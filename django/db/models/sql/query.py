@@ -1194,6 +1194,9 @@ class Query(object):
         targets, alias, join_list = self.trim_joins(sources, join_list, path)
 
         if hasattr(field, 'get_lookup_constraint'):
+            warnings.warn(
+                "MY COMMENT: lookups: {}".format(lookups),
+                RemovedInDjango110Warning, stacklevel=2)
             # For now foreign keys get special treatment. This should be
             # refactored when composite fields lands.
             condition = field.get_lookup_constraint(self.where_class, alias, targets, sources,
